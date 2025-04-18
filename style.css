@@ -1,0 +1,259 @@
+/*
+Css - Used AI to help make this!
+Because Bootsrap was okey I tought this was also :D 
+*/
+
+/* --- :root Variables --- */
+:root {
+    --bg-dark-primary: #1a1d21;
+    --bg-dark-secondary: #2c2f33;
+    --bg-dark-tertiary: #23272a;
+    --text-light-primary: #e8eaed;
+    --text-light-secondary: #bdc1c6;
+    --text-emphasis: #ffffff;
+    --accent-primary: #8ab4f8;
+    --accent-secondary: #c58af9;
+    --accent-tertiary: #fdd663;
+    --border-color: #424549;
+    --shadow-color: rgba(0, 0, 0, 0.3);
+    --overlay-bg: rgba(26, 29, 33, 0.98); /* Slightly transparent dark bg for overlay */
+
+    --font-primary: 'Roboto', 'Arial', sans-serif;
+    --base-font-size: 16px;
+    --line-height-base: 1.6;
+    --border-radius-base: 6px;
+    --transition-speed: 0.3s;
+    --transition-speed-fast: 0.2s;
+    --nav-height: 70px; /* Define approx nav height for positioning */
+}
+
+/* --- Global Resets & Base Styles --- */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { font-size: var(--base-font-size); scroll-behavior: smooth; }
+body {
+    font-family: var(--font-primary);
+    background-color: var(--bg-dark-primary);
+    color: var(--text-light-primary);
+    line-height: var(--line-height-base);
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+/* Prevent body scroll when mobile menu is open */
+body.no-scroll {
+    overflow: hidden;
+}
+
+/* --- Layout Containers --- */
+.page-container { width: 100%; max-width: 1200px; margin: 0 auto; padding: 0 20px; }
+.main-header { background-color: var(--bg-dark-tertiary); padding: 0; /* Padding handled by container/navbar */ min-height: var(--nav-height); display: flex; align-items: center; position: sticky; top: 0; z-index: 100; border-bottom: 1px solid var(--border-color); box-shadow: 0 2px 5px var(--shadow-color); }
+.main-content { flex-grow: 1; padding: 2rem 0; }
+.main-footer { background-color: var(--bg-dark-tertiary); color: var(--text-light-secondary); padding: 1.5rem 0; margin-top: auto; border-top: 1px solid var(--border-color); text-align: center; font-size: 0.9em; }
+
+/* --- Navigation --- */
+.navbar { 
+    display: flex; 
+    justify-content: space-between; 
+    align-items: center; 
+    width: 100%; height: 
+    var(--nav-height); 
+}
+.nav-logo a { 
+    font-size: 1.8rem; 
+    font-weight: bold; 
+    color: var(--accent-primary); 
+    text-decoration: none; 
+    transition: color var(--transition-speed) ease; 
+}
+.nav-logo a:hover { 
+    color: var(--text-emphasis); 
+}
+
+/* Navigation Links - Desktop */
+.nav-links ul { 
+    list-style: none; 
+    display: flex; 
+}
+.nav-links li { 
+    margin-left: 25px; 
+}
+.nav-links a { 
+    color: var(--text-light-primary); 
+    text-decoration: none; 
+    font-size: 1rem; 
+    padding: 5px 10px; 
+    border-radius: var(--border-radius-base); 
+    transition: background-color var(--transition-speed) ease, 
+    color var(--transition-speed) ease; 
+}
+.nav-links a:hover, .nav-links a.active { 
+    color: var(--text-emphasis); 
+    background-color: var(--accent-primary); 
+    color: var(--bg-dark-primary); 
+}
+
+/* Mobile Navigation Toggle Button */
+.mobile-nav-toggle {
+    display: none; /* Hidden on desktop */
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 10px;
+    z-index: 1010; /* Above overlay */
+    margin-left: auto; /* Push to the right */
+}
+
+.mobile-nav-toggle .hamburger-bar {
+    display: block;
+    width: 25px;
+    height: 3px;
+    background-color: var(--text-light-primary);
+    margin: 5px 0;
+    border-radius: 1px;
+    transition: all var(--transition-speed-fast) ease-in-out;
+}
+
+/* Hamburger Animation to X */
+.mobile-nav-toggle.is-active .hamburger-bar:nth-child(1) {
+    transform: translateY(8px) rotate(45deg);
+}
+.mobile-nav-toggle.is-active .hamburger-bar:nth-child(2) {
+    opacity: 0;
+}
+.mobile-nav-toggle.is-active .hamburger-bar:nth-child(3) {
+    transform: translateY(-8px) rotate(-45deg);
+}
+
+/* Screen Reader Only Text */
+.sr-only {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border-width: 0;
+}
+
+/* --- Typography (Keep as before) --- */
+h1, h2, h3, h4, h5, h6 { color: var(--text-emphasis); margin-bottom: 0.75em; line-height: 1.3; font-weight: 600; }
+h1 { font-size: 2.5rem; } h2 { font-size: 2rem; } h3 { font-size: 1.75rem; }
+p { margin-bottom: 1rem; }
+a { color: var(--accent-primary); text-decoration: none; transition: color var(--transition-speed) ease; }
+a:hover { color: var(--accent-secondary); text-decoration: underline; }
+strong { font-weight: bold; color: var(--text-emphasis); }
+code { background-color: var(--bg-dark-secondary); color: var(--accent-tertiary); padding: 0.2em 0.4em; border-radius: 4px; font-family: 'Courier New', Courier, monospace; }
+pre { background-color: var(--bg-dark-secondary); padding: 1rem; border-radius: var(--border-radius-base); overflow-x: auto; margin-bottom: 1rem; border: 1px solid var(--border-color); }
+pre code { background-color: transparent; padding: 0; color: var(--text-light-primary); }
+
+/* --- Components (Keep Button, Card, Form styles as before) --- */
+/* Buttons */
+.button { display: inline-block; padding: 0.75rem 1.5rem; border: none; border-radius: var(--border-radius-base); font-size: 1rem; font-weight: bold; text-align: center; text-decoration: none; cursor: pointer; transition: background-color var(--transition-speed) ease, transform 0.1s ease; }
+.button:active { transform: scale(0.98); }
+.button-primary { background-color: var(--accent-primary); color: var(--bg-dark-primary); }
+.button-primary:hover { background-color: #a8c7fa; color: var(--bg-dark-primary); text-decoration: none; }
+.button-secondary { background-color: var(--accent-secondary); color: var(--bg-dark-primary); }
+.button-secondary:hover { background-color: #d8aaff; color: var(--bg-dark-primary); text-decoration: none; }
+.button-outline { background-color: transparent; color: var(--accent-primary); border: 1px solid var(--accent-primary); }
+.button-outline:hover { background-color: var(--accent-primary); color: var(--bg-dark-primary); text-decoration: none; }
+
+/* Cards */
+.content-card { background-color: var(--bg-dark-secondary); padding: 1.5rem; border-radius: var(--border-radius-base); margin-bottom: 1.5rem; box-shadow: 0 3px 8px var(--shadow-color); border: 1px solid var(--border-color); }
+.content-card h3 { margin-top: 0; color: var(--accent-primary); }
+
+/* Forms */
+.form-group { margin-bottom: 1.5rem; }
+.form-label { display: block; margin-bottom: 0.5rem; color: var(--text-light-secondary); font-weight: bold; }
+.form-input, .form-textarea { width: 100%; padding: 0.75rem 1rem; background-color: var(--bg-dark-primary); border: 1px solid var(--border-color); border-radius: var(--border-radius-base); color: var(--text-light-primary); font-size: 1rem; transition: border-color var(--transition-speed) ease, box-shadow var(--transition-speed) ease; }
+.form-input:focus, .form-textarea:focus { outline: none; border-color: var(--accent-primary); box-shadow: 0 0 0 3px rgba(138, 180, 248, 0.3); }
+.form-textarea { min-height: 120px; resize: vertical; }
+
+
+/* --- Responsive Design --- */
+
+/* Tablet Styles (e.g., screens smaller than 992px) */
+@media (max-width: 991.98px) {
+    html { font-size: 15px; }
+    .page-container { padding: 0 15px; }
+    h1 { font-size: 2.2rem; } h2 { font-size: 1.8rem; }
+    /* Minor adjustments if needed, but major nav change is below */
+}
+
+/* Mobile Styles (e.g., screens smaller than 768px) - Major Nav Change */
+@media (max-width: 767.98px) {
+    html { font-size: 14px; }
+    h1 { font-size: 2rem; } h2 { font-size: 1.6rem; }
+
+    /* Show Mobile Toggle Button */
+    .mobile-nav-toggle {
+        display: block; /* Show the hamburger */
+    }
+
+    /* Style the Nav Links Container for Mobile Overlay */
+    .nav-links {
+        position: fixed; /* Take out of flow, position relative to viewport */
+        top: 0; /* Align to top */
+        left: -100%; /* Start off-screen to the left */
+        width: 100%;
+        height: 100vh; /* Full viewport height */
+        background-color: var(--overlay-bg); /* Use overlay background */
+        backdrop-filter: blur(5px); /* Optional: blur content behind */
+        display: flex;
+        flex-direction: column;
+        justify-content: center; /* Center links vertically */
+        align-items: center; /* Center links horizontally */
+        transition: left 0.4s ease-in-out; /* Smooth slide transition */
+        z-index: 1005; /* Below toggle button, above content */
+        padding-top: var(--nav-height); /* Push content below header space */
+    }
+
+    /* Style for when the menu is open */
+    .nav-links.is-open {
+        left: 0; /* Slide into view */
+    }
+
+    /* Style Nav Links List for Vertical Mobile Layout */
+    .nav-links ul {
+        flex-direction: column; /* Stack links vertically */
+        align-items: center; /* Center list items */
+        padding: 0;
+        width: 80%; /* Optional: constrain width a bit */
+        text-align: center;
+    }
+
+    .nav-links li {
+        margin-left: 0; /* Remove desktop spacing */
+        margin-bottom: 1.5rem; /* Add vertical spacing */
+        width: 100%;
+    }
+
+    .nav-links a {
+        font-size: 1.5rem; /* Larger text for mobile */
+        padding: 15px 20px; /* Larger tap target */
+        display: block; /* Make whole area clickable */
+        border: 1px solid transparent; /* Prepare for potential hover border */
+    }
+     /* Hover/Active state for mobile links */
+    .nav-links a:hover,
+    .nav-links a.active {
+        background-color: var(--accent-primary);
+        color: var(--bg-dark-primary);
+        border-color: var(--accent-primary);
+        border-radius: var(--border-radius-base);
+    }
+
+    /* Adjust other layout if needed */
+    .main-content { padding: 1.5rem 0; }
+    .button { padding: 0.85rem 1.6rem; }
+}
+
+/* Smaller Mobile Styles (e.g., screens smaller than 576px) */
+@media (max-width: 575.98px) {
+    .page-container { padding: 0 10px; }
+    h1 { font-size: 1.8rem; } h2 { font-size: 1.5rem; }
+    .content-card { padding: 1rem; }
+    .button { width: 100%; margin-bottom: 0.5rem; }
+    .button + .button { margin-top: 0.5rem; }
+}
