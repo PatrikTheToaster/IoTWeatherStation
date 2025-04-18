@@ -1,0 +1,23 @@
+This is an historical weather statistics app
+weatherforecast api
+
+Navbar näkymä plan
+[Home]
+ > Temperature (temperature_2m readings) > muita omia jos on aikaa voisi olla yhdistetty 
+[Rain]
+ > Näyttää sade määrät
+ > pitkää kyetä näyttämään seuraavat aika skaalat: 
+    > nyt (20 viimeistä data .)
+    > 48h avg/h
+    > 72h avg/h
+    > 1 week avg/h
+    > 1 month avg/h 
+[wind speed]
+ > Lisätään muita datoja jos on aikaa mutta mennään muuten perus arvoilla. 
+ > Näyttää cloud cover %
+ > pitkää kyetä näyttämään seuraavat aika skaalat: 
+    > nyt (20 viimeistä data .)
+    > 48h avg/h
+    > 72h avg/h
+    > 1 week avg/h
+    > 1 month avg/h 
