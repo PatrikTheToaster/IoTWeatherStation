@@ -1,75 +1,83 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Weather Archive - Tampere</title>
     <link rel="stylesheet" href="style.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
-    <title>Weather Archive</title>
 </head>
 <body>
-        <!-- Navigation bar -->
-        <header class="main-header">
-            <div class="page-container">
-                <nav class="navbar">
-                    <div class="nav-logo">
-                        <a href="#">Weather Archive</a>
-                    </div>
-    
-                    <button class="mobile-nav-toggle" id="mobile-menu-toggle" aria-controls="main-nav-links" aria-expanded="false">
-                        <span class="sr-only">Menu</span> <span class="hamburger-bar"></span>
-                        <span class="hamburger-bar"></span>
-                        <span class="hamburger-bar"></span>
-                    </button>
-    
-                    <div class="nav-links" id="main-nav-links">
-                        <ul>
-                            <li><a href="#" class="active">Home</a></li>
-                            <li><a href="#">Rain</a></li>
-                            <li><a href="#">Wind</a></li>
-                            <li><a href="#">About</a></li>
-                        </ul>
-                    </div>
-                </nav>
-            </div>
-        </header>
 
-        <main class="main-content">
-            <div class="page-container">
-                <h1>Temperature archive</h1>
-                <p>last 20 temperatures</p>
-                
-                <section class="content-card">
-                    <h2>Card is here!</h2>
-                    <p>The weather data will be here.</p>
-                </section>
-            </div>
+    <header class="main-header">
+        <div class="page-container">
+            <nav class="navbar" id="main-navigation">
+                <div class="nav-logo">
+                    <a href="#">Weather Archive</a>
+                </div>
 
+                <button class="mobile-nav-toggle" id="mobile-menu-toggle" aria-controls="main-nav-links" aria-expanded="false">
+                    <span class="sr-only">Menu</span>
+                    <span class="hamburger-bar"></span>
+                    <span class="hamburger-bar"></span>
+                    <span class="hamburger-bar"></span>
+                </button>
+
+                <div class="nav-links" id="main-nav-links">
+                    <ul>
+                        <li><button class="nav-button active" id="nav-view1">Temperature</button></li>
+                        <li><button class="nav-button" id="nav-view2">Rain</button></li>
+                        <li><button class="nav-button" id="nav-view3">Wind Speed</button></li>
+                    </ul>
+                </div>
+            </nav>
+        </div>
+    </header>
+
+    <main class="main-content">
+        <div class="page-container">
             <div id="loading-indicator" class="status-indicator" style="display: none;">
-                <p>Ladataan tietoja...</p>
+                <p>Loading data...</p>
             </div>
-    
+
             <div id="error-message" class="status-indicator error" style="display: none;">
                 </div>
-    
-            <div id="timespan-controls" style="display: none; margin-bottom: 1em;">
+
+             <div class="controls-container">
+                <div id="timespan-controls" class="control-group" style="display: none;">
+                    </div>
+                <div id="display-mode-controls" class="control-group" style="display: none;"> <span class="display-mode-label">Display: </span>
+                    <button class="display-mode-button active" id="show-table-button" data-mode="table">Table</button>
+                    <button class="display-mode-button" id="show-chart-button" data-mode="chart">Chart</button>
                 </div>
-    
-            <div id="view-content-area">
-                </div>
-
-        </main>
-        <!-- One large container that contains 20 termperature_2m data -->
-         
+            </div>
 
 
+            <div id="view-content-area" class="content-card">
+                 <h2 id="view-title-placeholder">Loading...</h2>
 
+                 <div id="chart-container" style="display: none; position: relative; height:40vh; width:80vw; max-width: 800px; margin: 20px auto;">
+                    <canvas id="weather-chart-canvas"></canvas>
+                 </div>
 
-    <script src="Test.js"></script>
-    <script src="script.js"></script> 
-    <script src="script-navbar.js"></script>
+                 <div id="table-container">
+                    <p>Loading table...</p> </div>
+            </div>
+
+        </div> </main>
+
+    <footer class="main-footer">
+        <div class="page-container">
+            <p>&copy; 2025 WeatherApp TAMK - All rights reserved</p>
+        </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.2/dist/chart.umd.min.js"></script>
+
+    <script src="script-navbar.js" defer></script>
+    <script src="script.js" defer></script>
+
 </body>
 </html>

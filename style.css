@@ -1,6 +1,6 @@
 /*
 Css - Used AI to help make this!
-Because Bootsrap was okey I tought this was also :D 
+Because Bootsrap was okey I tought this was also :D
 */
 
 /* --- :root Variables --- */
@@ -11,12 +11,15 @@ Because Bootsrap was okey I tought this was also :D
     --text-light-primary: #e8eaed;
     --text-light-secondary: #bdc1c6;
     --text-emphasis: #ffffff;
-    --accent-primary: #8ab4f8;
-    --accent-secondary: #c58af9;
-    --accent-tertiary: #fdd663;
+    --accent-primary: #8ab4f8; /* Google Blue */
+    --accent-secondary: #c58af9; /* Purple/Magenta */
+    --accent-tertiary: #fdd663; /* Yellow/Orange */
     --border-color: #424549;
     --shadow-color: rgba(0, 0, 0, 0.3);
-    --overlay-bg: rgba(26, 29, 33, 0.98); /* Slightly transparent dark bg for overlay */
+    --overlay-bg: rgba(26, 29, 33, 0.98); /* Mobile menu overlay */
+    --error-bg: #f8d7da;
+    --error-text: #721c24;
+    --error-border: #f5c6cb;
 
     --font-primary: 'Roboto', 'Arial', sans-serif;
     --base-font-size: 16px;
@@ -50,47 +53,37 @@ body.no-scroll {
 .main-content { flex-grow: 1; padding: 2rem 0; }
 .main-footer { background-color: var(--bg-dark-tertiary); color: var(--text-light-secondary); padding: 1.5rem 0; margin-top: auto; border-top: 1px solid var(--border-color); text-align: center; font-size: 0.9em; }
 
-/* --- Navigation --- */
-.navbar { 
-    display: flex; 
-    justify-content: space-between; 
-    align-items: center; 
-    width: 100%; height: 
-    var(--nav-height); 
-}
-.nav-logo a { 
-    font-size: 1.8rem; 
-    font-weight: bold; 
-    color: var(--accent-primary); 
-    text-decoration: none; 
-    transition: color var(--transition-speed) ease; 
-}
-.nav-logo a:hover { 
-    color: var(--text-emphasis); 
+/* --- Navigation  --- */
+.navbar { display: flex; justify-content: space-between; align-items: center; width: 100%; height: var(--nav-height); }
+.nav-logo a { font-size: 1.8rem; font-weight: bold; color: var(--accent-primary); text-decoration: none; transition: color var(--transition-speed) ease; }
+.nav-logo a:hover { color: var(--text-emphasis); }
+
+.nav-links ul { list-style: none; display: flex; align-items: center; /* Align buttons vertically */ }
+.nav-links li { margin-left: 15px; } /* Spacing between nav items */
+
+/* Style both links (a) and buttons (button.nav-button) similarly inside nav */
+.nav-links a,
+.nav-links button.nav-button { /* Lisätty .nav-button kohdistus */
+    display: inline-block; /* Ensure padding works correctly */
+    color: var(--text-light-primary);
+    background-color: transparent; /* Make button background transparent initially */
+    border: none; /* Remove default button border */
+    text-decoration: none;
+    font-size: 1rem;
+    font-family: inherit; /* Inherit font from body */
+    padding: 8px 15px; /* Adjust padding */
+    border-radius: var(--border-radius-base);
+    cursor: pointer;
+    transition: background-color var(--transition-speed) ease, color var(--transition-speed) ease;
 }
 
-/* Navigation Links - Desktop */
-.nav-links ul { 
-    list-style: none; 
-    display: flex; 
+.nav-links a:hover,
+.nav-links button.nav-button:hover,
+.nav-links button.nav-button.active { /* Style active button */
+    background-color: var(--accent-primary);
+    color: var(--bg-dark-primary); /* Dark text on accent background */
 }
-.nav-links li { 
-    margin-left: 25px; 
-}
-.nav-links a { 
-    color: var(--text-light-primary); 
-    text-decoration: none; 
-    font-size: 1rem; 
-    padding: 5px 10px; 
-    border-radius: var(--border-radius-base); 
-    transition: background-color var(--transition-speed) ease, 
-    color var(--transition-speed) ease; 
-}
-.nav-links a:hover, .nav-links a.active { 
-    color: var(--text-emphasis); 
-    background-color: var(--accent-primary); 
-    color: var(--bg-dark-primary); 
-}
+
 
 /* Mobile Navigation Toggle Button */
 .mobile-nav-toggle {
@@ -114,42 +107,25 @@ body.no-scroll {
 }
 
 /* Hamburger Animation to X */
-.mobile-nav-toggle.is-active .hamburger-bar:nth-child(1) {
-    transform: translateY(8px) rotate(45deg);
-}
-.mobile-nav-toggle.is-active .hamburger-bar:nth-child(2) {
-    opacity: 0;
-}
-.mobile-nav-toggle.is-active .hamburger-bar:nth-child(3) {
-    transform: translateY(-8px) rotate(-45deg);
-}
+.mobile-nav-toggle.is-active .hamburger-bar:nth-child(1) { transform: translateY(8px) rotate(45deg); }
+.mobile-nav-toggle.is-active .hamburger-bar:nth-child(2) { opacity: 0; }
+.mobile-nav-toggle.is-active .hamburger-bar:nth-child(3) { transform: translateY(-8px) rotate(-45deg); }
 
 /* Screen Reader Only Text */
-.sr-only {
-    position: absolute;
-    width: 1px;
-    height: 1px;
-    padding: 0;
-    margin: -1px;
-    overflow: hidden;
-    clip: rect(0, 0, 0, 0);
-    white-space: nowrap;
-    border-width: 0;
-}
+.sr-only { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0, 0, 0, 0); white-space: nowrap; border-width: 0; }
 
-/* --- Typography (Keep as before) --- */
+/* --- Typography (From Gemini Style) --- */
 h1, h2, h3, h4, h5, h6 { color: var(--text-emphasis); margin-bottom: 0.75em; line-height: 1.3; font-weight: 600; }
 h1 { font-size: 2.5rem; } h2 { font-size: 2rem; } h3 { font-size: 1.75rem; }
 p { margin-bottom: 1rem; }
 a { color: var(--accent-primary); text-decoration: none; transition: color var(--transition-speed) ease; }
 a:hover { color: var(--accent-secondary); text-decoration: underline; }
-strong { font-weight: bold; color: var(--text-emphasis); }
+strong { font-weight: bold; /* Removed color: var(--text-emphasis); to allow local overrides */ }
 code { background-color: var(--bg-dark-secondary); color: var(--accent-tertiary); padding: 0.2em 0.4em; border-radius: 4px; font-family: 'Courier New', Courier, monospace; }
 pre { background-color: var(--bg-dark-secondary); padding: 1rem; border-radius: var(--border-radius-base); overflow-x: auto; margin-bottom: 1rem; border: 1px solid var(--border-color); }
 pre code { background-color: transparent; padding: 0; color: var(--text-light-primary); }
 
-/* --- Components (Keep Button, Card, Form styles as before) --- */
-/* Buttons */
+/* --- Components (Button, Card from Gemini Style) --- */
 .button { display: inline-block; padding: 0.75rem 1.5rem; border: none; border-radius: var(--border-radius-base); font-size: 1rem; font-weight: bold; text-align: center; text-decoration: none; cursor: pointer; transition: background-color var(--transition-speed) ease, transform 0.1s ease; }
 .button:active { transform: scale(0.98); }
 .button-primary { background-color: var(--accent-primary); color: var(--bg-dark-primary); }
@@ -159,101 +135,369 @@ pre code { background-color: transparent; padding: 0; color: var(--text-light-pr
 .button-outline { background-color: transparent; color: var(--accent-primary); border: 1px solid var(--accent-primary); }
 .button-outline:hover { background-color: var(--accent-primary); color: var(--bg-dark-primary); text-decoration: none; }
 
-/* Cards */
 .content-card { background-color: var(--bg-dark-secondary); padding: 1.5rem; border-radius: var(--border-radius-base); margin-bottom: 1.5rem; box-shadow: 0 3px 8px var(--shadow-color); border: 1px solid var(--border-color); }
-.content-card h3 { margin-top: 0; color: var(--accent-primary); }
+/* Card H2 title styling */
+.content-card h2 {
+    margin-top: 0;
+    color: var(--text-emphasis); /* Make card title white */
+    border-bottom: 1px solid var(--border-color);
+    padding-bottom: 0.5rem;
+    margin-bottom: 1rem;
+}
+.content-card h3 { margin-top: 0; color: var(--accent-primary); } /* Keep H3 accented */
 
-/* Forms */
+/* Forms (Jos tarvitaan myöhemmin) */
 .form-group { margin-bottom: 1.5rem; }
 .form-label { display: block; margin-bottom: 0.5rem; color: var(--text-light-secondary); font-weight: bold; }
 .form-input, .form-textarea { width: 100%; padding: 0.75rem 1rem; background-color: var(--bg-dark-primary); border: 1px solid var(--border-color); border-radius: var(--border-radius-base); color: var(--text-light-primary); font-size: 1rem; transition: border-color var(--transition-speed) ease, box-shadow var(--transition-speed) ease; }
 .form-input:focus, .form-textarea:focus { outline: none; border-color: var(--accent-primary); box-shadow: 0 0 0 3px rgba(138, 180, 248, 0.3); }
 .form-textarea { min-height: 120px; resize: vertical; }
 
+/* --- SÄÄSOVELLUKSEN LISÄTYYLIT --- */
 
-/* --- Responsive Design --- */
+/* Lataus- ja virheilmoitukset - Mukautettu Gemini-teemaan */
+.status-indicator {
+    text-align: center;
+    padding: 1.5rem;
+    margin-bottom: 1.5rem;
+    border-radius: var(--border-radius-base);
+    background-color: var(--bg-dark-secondary); /* Match card background */
+    border: 1px solid var(--border-color);
+}
+.status-indicator p { margin: 0; font-weight: bold; color: var(--text-light-primary); }
 
-/* Tablet Styles (e.g., screens smaller than 992px) */
+.status-indicator.error { /* Override for error */
+    background-color: var(--error-bg);
+    color: var(--error-text) !important; /* Varmistetaan tekstin väri */
+    border-color: var(--error-border);
+}
+.status-indicator.error p {
+     color: var(--error-text) !important; /* Varmistetaan tekstin väri */
+}
+
+/* Aikavälin valintakontrollit - Mukautettu Gemini-teemaan */
+#timespan-controls {
+    /* Container already styled slightly in HTML */
+    display: flex; /* Arrange buttons nicely */
+    flex-wrap: wrap; /* Allow wrapping */
+    gap: 10px; /* Space between buttons */
+    align-items: center; /* Align items vertically */
+    margin-bottom: 1.5rem; /* Erotetaan taulukosta */
+    padding: 1rem;
+    background-color: var(--bg-dark-secondary);
+    border-radius: var(--border-radius-base);
+    border: 1px solid var(--border-color);
+}
+#timespan-controls span { /* Label style */
+    margin-right: 10px;
+    color: var(--text-light-secondary);
+    font-weight: bold;
+}
+#timespan-controls button.timespan-button { /* Individual button style */
+    background-color: var(--bg-dark-tertiary); /* Use tertiary dark */
+    color: var(--text-light-secondary);
+    border: 1px solid var(--border-color);
+    padding: 0.5em 0.9em;
+    cursor: pointer;
+    border-radius: var(--border-radius-base);
+    font-size: 0.9em;
+    transition: background-color var(--transition-speed) ease, border-color var(--transition-speed) ease, color var(--transition-speed) ease;
+}
+#timespan-controls button.timespan-button:hover {
+    background-color: var(--bg-dark-primary); /* Darker on hover */
+    border-color: var(--accent-primary);
+    color: var(--text-light-primary);
+}
+#timespan-controls button.timespan-button.active { /* Active timespan button */
+    background-color: var(--accent-primary);
+    color: var(--bg-dark-primary);
+    border-color: var(--accent-primary);
+    font-weight: bold;
+}
+
+/* SÄÄDATAN TAULUKKO (Responsiivinen) */
+#view-content-area .responsive-weather-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 1.5rem; /* Lisää tilaa otsikon ja taulukon väliin */
+}
+
+/* Taulukon solut (th & td) - Perustyylit */
+#view-content-area .responsive-weather-table th,
+#view-content-area .responsive-weather-table td {
+    padding: 10px 12px;
+    text-align: left;
+    border-bottom: 1px solid var(--border-color);
+    color: var(--text-light-primary);
+}
+
+/* Otsikkosolut (th) - Vain leveillä näytöillä näkyvissä */
+#view-content-area .responsive-weather-table th {
+    color: var(--text-light-secondary);
+    font-weight: bold;
+    background-color: var(--bg-dark-tertiary);
+    white-space: nowrap;
+}
+
+/* Arvon korostus (keltainen) */
+#view-content-area .responsive-weather-table td .value {
+    color: var(--accent-tertiary);
+    font-weight: bold;
+}
+
+/* Viimeisen rivin alleviivauksen poisto */
+#view-content-area .responsive-weather-table tbody tr:last-child td {
+    border-bottom: none;
+}
+
+
+/* --- Responsiiviset Muutokset --- */
+
+/* Perus tabletin säädöt */
 @media (max-width: 991.98px) {
     html { font-size: 15px; }
     .page-container { padding: 0 15px; }
     h1 { font-size: 2.2rem; } h2 { font-size: 1.8rem; }
-    /* Minor adjustments if needed, but major nav change is below */
 }
 
-/* Mobile Styles (e.g., screens smaller than 768px) - Major Nav Change */
+/* Suuremmat mobiililaitteet / pienet tabletit - Navigaatio muuttuu + Taulukko muuttuu */
 @media (max-width: 767.98px) {
     html { font-size: 14px; }
     h1 { font-size: 2rem; } h2 { font-size: 1.6rem; }
 
-    /* Show Mobile Toggle Button */
-    .mobile-nav-toggle {
-        display: block; /* Show the hamburger */
-    }
-
-    /* Style the Nav Links Container for Mobile Overlay */
+    /* --- Mobiilinavigaatio --- */
+    .mobile-nav-toggle { display: block; } /* Näytä hampurilainen */
     .nav-links {
-        position: fixed; /* Take out of flow, position relative to viewport */
-        top: 0; /* Align to top */
-        left: -100%; /* Start off-screen to the left */
-        width: 100%;
-        height: 100vh; /* Full viewport height */
-        background-color: var(--overlay-bg); /* Use overlay background */
-        backdrop-filter: blur(5px); /* Optional: blur content behind */
-        display: flex;
-        flex-direction: column;
-        justify-content: center; /* Center links vertically */
-        align-items: center; /* Center links horizontally */
-        transition: left 0.4s ease-in-out; /* Smooth slide transition */
-        z-index: 1005; /* Below toggle button, above content */
-        padding-top: var(--nav-height); /* Push content below header space */
+        position: fixed; top: 0; left: -100%; width: 100%; height: 100vh;
+        background-color: var(--overlay-bg); backdrop-filter: blur(5px);
+        display: flex; flex-direction: column; justify-content: center; align-items: center;
+        transition: left 0.4s ease-in-out; z-index: 1005; padding-top: var(--nav-height);
     }
+    .nav-links.is-open { left: 0; }
+    .nav-links ul { flex-direction: column; align-items: center; padding: 0; width: 80%; text-align: center; }
+    .nav-links li { margin-left: 0; margin-bottom: 1rem; width: 100%; }
+    .nav-links a, .nav-links button.nav-button { font-size: 1.5rem; padding: 15px 20px; display: block; width: 100%; text-align: center; }
+    /* Poistetaan hover-efekti kosketuslaitteilta (voi olla häiritsevä) */
+    .nav-links a:hover, .nav-links button.nav-button:hover { background-color: transparent; color: var(--text-light-primary); }
+    /* Aktiivisen napin tyyli mobiilissa */
+    .nav-links button.nav-button.active { background-color: var(--accent-primary); color: var(--bg-dark-primary); }
 
-    /* Style for when the menu is open */
-    .nav-links.is-open {
-        left: 0; /* Slide into view */
-    }
+    /* --- Aikavälinapit mobiilissa --- */
+    #timespan-controls { flex-direction: column; align-items: stretch; }
+    #timespan-controls span { margin-bottom: 10px; text-align: center; display: block; width: 100%;}
+    #timespan-controls button.timespan-button { width: 100%; margin-bottom: 5px; }
 
-    /* Style Nav Links List for Vertical Mobile Layout */
-    .nav-links ul {
-        flex-direction: column; /* Stack links vertically */
-        align-items: center; /* Center list items */
-        padding: 0;
-        width: 80%; /* Optional: constrain width a bit */
-        text-align: center;
+    /* --- Responsiivinen taulukko mobiilissa --- */
+    /* Piilota taulukon alkuperäinen otsikkorivi (thead) */
+    #view-content-area .responsive-weather-table thead { display: none; }
+    /* Muuta rivit (tr) korteiksi */
+    #view-content-area .responsive-weather-table tr {
+        display: block; margin-bottom: 1em;
+        border: 1px solid var(--border-color); border-radius: var(--border-radius-base);
+        padding: 0.5em; background-color: var(--bg-dark-tertiary);
     }
+    #view-content-area .responsive-weather-table tbody tr:last-child { margin-bottom: 0; }
+    /* Muuta solut (td) täysleveiksi riveiksi kortin sisällä */
+    #view-content-area .responsive-weather-table td {
+        display: block; text-align: right; padding-left: 45%; position: relative;
+        border-bottom: 1px dashed var(--border-color); padding-top: 8px; padding-bottom: 8px;
+        /* Varmistetaan, ettei tule tuplareunusta rivin reunuksen kanssa */
+        border-left: none; border-right: none; border-top: none;
+    }
+    #view-content-area .responsive-weather-table td:last-child { border-bottom: none; }
+    /* Lisätään data-labelin sisältö solun eteen */
+    #view-content-area .responsive-weather-table td::before {
+        content: attr(data-label); position: absolute; left: 8px; top: 8px;
+        width: 40%; padding-right: 10px; white-space: nowrap;
+        text-align: left; font-weight: bold; color: var(--text-light-secondary);
+    }
+    /* Arvon ulkoasu mobiilissa */
+    #view-content-area .responsive-weather-table td .value { font-size: 1.1em; }
 
-    .nav-links li {
-        margin-left: 0; /* Remove desktop spacing */
-        margin-bottom: 1.5rem; /* Add vertical spacing */
-        width: 100%;
-    }
-
-    .nav-links a {
-        font-size: 1.5rem; /* Larger text for mobile */
-        padding: 15px 20px; /* Larger tap target */
-        display: block; /* Make whole area clickable */
-        border: 1px solid transparent; /* Prepare for potential hover border */
-    }
-     /* Hover/Active state for mobile links */
-    .nav-links a:hover,
-    .nav-links a.active {
-        background-color: var(--accent-primary);
-        color: var(--bg-dark-primary);
-        border-color: var(--accent-primary);
-        border-radius: var(--border-radius-base);
-    }
-
-    /* Adjust other layout if needed */
+    /* --- Muu layout mobiilissa --- */
     .main-content { padding: 1.5rem 0; }
-    .button { padding: 0.85rem 1.6rem; }
+    .page-container { padding: 0 15px; }
 }
 
-/* Smaller Mobile Styles (e.g., screens smaller than 576px) */
+/* Pienimmät mobiililaitteet */
 @media (max-width: 575.98px) {
     .page-container { padding: 0 10px; }
     h1 { font-size: 1.8rem; } h2 { font-size: 1.5rem; }
-    .content-card { padding: 1rem; }
-    .button { width: 100%; margin-bottom: 0.5rem; }
-    .button + .button { margin-top: 0.5rem; }
+    .content-card { padding: 1rem; } /* Pienempi täyte korteille */
+    /* #view-content-area .responsive-weather-table td { padding-left: 10px; text-align: left; } */ /* Esimerkki lisäsäädöstä pienimmille */
+    /* #view-content-area .responsive-weather-table td::before { position: static; display: block; width: auto; margin-bottom: 3px; } */ /* Esimerkki lisäsäädöstä pienimmille */
+}
+
+
+
+
+
+/* Ensure timespan controls look okay after display mode controls */
+#timespan-controls {
+    margin-top: 1em; /* Add space if both are visible */
+     /* Ensure styles from previous steps are here */
+     display: flex; flex-wrap: wrap; gap: 10px; align-items: center;
+     padding: 1rem; background-color: var(--bg-dark-secondary);
+     border-radius: var(--border-radius-base); border: 1px solid var(--border-color);
+}
+#timespan-controls span { margin-right: 10px; color: var(--text-light-secondary); font-weight: bold; }
+#timespan-controls button.timespan-button { background-color: var(--bg-dark-tertiary); color: var(--text-light-secondary); border: 1px solid var(--border-color); padding: 0.5em 0.9em; cursor: pointer; border-radius: var(--border-radius-base); font-size: 0.9em; transition: background-color var(--transition-speed) ease, border-color var(--transition-speed) ease, color var(--transition-speed) ease; }
+#timespan-controls button.timespan-button:hover { background-color: var(--bg-dark-primary); border-color: var(--accent-primary); color: var(--text-light-primary); }
+#timespan-controls button.timespan-button.active { background-color: var(--accent-primary); color: var(--bg-dark-primary); border-color: var(--accent-primary); font-weight: bold; }
+
+/* --- UI Controls Styling (Timespan & Display Mode) --- */
+
+/* Container for multiple control groups (Optional, but good for layout) */
+.controls-container {
+    display: flex; /* Arrange groups like Timespan and Display Mode */
+    flex-wrap: wrap; /* Allow wrapping on smaller screens */
+    gap: 20px; /* Space between groups */
+    margin-bottom: 1.5rem; /* Space below the controls */
+    align-items: center;
+    /* Add background/border matching cards if desired */
+    /* background-color: var(--bg-dark-secondary); */
+    /* padding: 1rem; */
+    /* border-radius: var(--border-radius-base); */
+    /* border: 1px solid var(--border-color); */
+}
+
+/* General style for a group of controls (label + buttons) */
+.control-group {
+    display: flex; /* Align label and buttons horizontally */
+    align-items: center;
+    flex-wrap: nowrap; /* Prevent buttons wrapping within the group */
+}
+
+/* Style for the label preceding the buttons */
+.control-group .timespan-label,
+.control-group .display-mode-label {
+    margin-right: 10px;
+    color: var(--text-light-secondary);
+    font-weight: bold;
+    white-space: nowrap; /* Prevent label wrapping */
+    font-size: 0.9em;
+}
+
+/* --- Display Mode Toggle Button Styling --- */
+
+/* Container specific adjustments if needed (usually covered by .control-group) */
+
+
+/* Base style for EACH display mode button */
+#display-mode-controls .display-mode-button {
+    background-color: var(--bg-dark-tertiary); /* Default background */
+    color: var(--text-light-secondary); /* Default text color */
+    border: 1px solid var(--border-color); /* Add border */
+    padding: 6px 14px; /* Adjust padding */
+    cursor: pointer;
+    font-size: 0.9em;
+    line-height: 1.4; /* Match height */
+    transition: background-color var(--transition-speed-fast) ease, color var(--transition-speed-fast) ease, border-color var(--transition-speed-fast) ease;
+    white-space: nowrap; /* Prevent button text wrapping */
+
+    /* === For Segmented Look === */
+    border-right-width: 0; /* Remove right border to join buttons */
+    border-radius: 0; /* Remove individual radius */
+}
+
+/* Style the FIRST button in the group */
+#display-mode-controls .display-mode-button:first-of-type {
+    border-top-left-radius: var(--border-radius-base);
+    border-bottom-left-radius: var(--border-radius-base);
+}
+
+/* Style the LAST button in the group */
+#display-mode-controls .display-mode-button:last-of-type {
+    border-top-right-radius: var(--border-radius-base);
+    border-bottom-right-radius: var(--border-radius-base);
+    border-right-width: 1px; /* Re-add right border for the last button */
+}
+
+/* Hover effect for INACTIVE buttons */
+#display-mode-controls .display-mode-button:not(.active):hover {
+    background-color: var(--bg-dark-secondary); /* Slightly lighter background */
+    color: var(--text-light-primary); /* Brighter text */
+    border-color: var(--accent-secondary); /* Accent border on hover */
+}
+
+/* Style for the ACTIVE button */
+#display-mode-controls .display-mode-button.active {
+    background-color: var(--accent-primary); /* Use primary accent color */
+    color: var(--bg-dark-primary); /* Dark text for contrast */
+    border-color: var(--accent-primary); /* Match border to background */
+    font-weight: bold;
+    z-index: 1; /* Ensure active button border overlaps inactive */
+    position: relative; /* Needed for z-index */
+}
+
+/* Focus style for accessibility */
+#display-mode-controls .display-mode-button:focus-visible {
+    outline: 2px solid var(--accent-secondary); /* Use a secondary accent for focus */
+    outline-offset: 2px;
+    z-index: 2; /* Ensure focus outline is on top */
+    position: relative; /* Needed for z-index */
+}
+
+/* --- Ensure Timespan controls still look okay --- */
+/* (Your existing styles for timespan seem fine, but double-check alignment if needed) */
+#timespan-controls {
+    /* If using .controls-container, it might inherit flex properties */
+    /* Adjust gap if needed, maybe make buttons slightly smaller */
+    gap: 8px; /* Adjust gap if different from display mode */
+}
+
+#timespan-controls button.timespan-button {
+     /* Ensure padding/font-size are consistent or intentional */
+     padding: 6px 12px;
+     font-size: 0.9em;
+     border-radius: var(--border-radius-base); /* Keep individual radius */
+}
+
+/* --- Adjustments for Mobile --- */
+@media (max-width: 768px) {
+     .controls-container {
+          flex-direction: column; /* Stack control groups vertically */
+          align-items: stretch; /* Make groups take full width */
+          gap: 15px; /* Adjust vertical gap */
+     }
+
+     .control-group {
+          justify-content: center; /* Center items within the group */
+     }
+
+     /* Optional: Center the display mode toggle buttons on mobile */
+     #display-mode-controls {
+         justify-content: center;
+         width: fit-content; /* Allow centering */
+         margin-left: auto;
+         margin-right: auto;
+          /* Space below for timespan controls */
+         margin-bottom: 10px;
+     }
+
+     /* Ensure labels are okay */
+    .control-group .timespan-label,
+    .control-group .display-mode-label {
+        margin-right: 8px; /* Slightly less margin */
+        text-align: center; /* Center if stacking */
+        margin-bottom: 5px; /* Add space below label if stacking internally */
+        flex-basis: 100%; /* Make label take full width if needed */
+    }
+
+     /* Your existing mobile styles for timespan buttons look good */
+    #timespan-controls {
+        flex-direction: column;
+        align-items: stretch;
+    }
+    #timespan-controls span {
+        margin-bottom: 10px;
+        text-align: center;
+        display: block;
+        width: 100%;
+    }
+    #timespan-controls button.timespan-button {
+        width: 100%;
+        margin-bottom: 5px;
+    }
+
 }
